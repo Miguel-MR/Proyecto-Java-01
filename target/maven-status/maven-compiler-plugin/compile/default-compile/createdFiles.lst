@@ -1,1 +1,3 @@
 com\mycompany\proyecto02\controller\Login.class
+com\mycompany\proyecto02\controller\ControllerCountries.class
+com\mycompany\proyecto02\security\Filtro.class

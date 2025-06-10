@@ -45,7 +45,7 @@ public class Filtro implements Filter{
         //2. validacion Login
         boolean validaRutaLogin = (rutaSolicitud.equals(raiz + "/")|| (rutaSolicitud.equals(raiz + "/login.xhtml")));
         //3. cargue de contenido estatico
-        boolean validaRecurso = rutaSolicitud.contains("/resourse/");
+        boolean validaRecurso = rutaSolicitud.contains("/resourses/");
         
         if(validaSesion || validaRutaLogin || validaRecurso){
         chain.doFilter(request, response);
