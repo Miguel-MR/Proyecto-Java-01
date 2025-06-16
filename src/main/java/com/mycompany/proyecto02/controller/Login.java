@@ -4,9 +4,12 @@
  */
 package com.mycompany.proyecto02.controller;
 
+import com.mycompany.proyecto02.entities.Users;
+import com.mycompany.proyecto02.services.UsersFacadeLocal;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
@@ -22,6 +25,9 @@ public class Login implements Serializable {
      */
     private String usuario;
     private String contrasenna;
+    private Users user = new Users();
+    @EJB
+    UsersFacadeLocal ufl;
 
     public String getUsuario() {
         return usuario;
@@ -40,8 +46,9 @@ public class Login implements Serializable {
     }
     
     public String iniciarSesion(){
-        if(usuario.equals("admin")&& contrasenna.equals("123")){
-            return "inicio";
+        user = this.ufl.iniciarSesion(usuario, contrasenna);
+        if(user.getEmployeeId()!=null){
+            return "/views/index.xhtml";
         }else{
             FacesContext contexto = FacesContext.getCurrentInstance();
             FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR,"Usuario y/o contraseña invalidos","MSG_ERROR");
