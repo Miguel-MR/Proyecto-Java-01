@@ -31,7 +31,7 @@ public class UsersFacade extends AbstractFacade<Users> implements UsersFacadeLoc
 
     @Override
     public Users iniciarSesion(String usuario, String password) {
-        Query query = em.createQuery("SELECT U FROM Users U WHERE U.username = :username AND U.password = :password AND U.statusId = 1");
+        Query query = em.createQuery("SELECT U FROM Users U WHERE U.username = :username AND U.password = :password AND U.statusId.statusId=1");
         query.setParameter("username", usuario);
         query.setParameter("password", password);
         try {
